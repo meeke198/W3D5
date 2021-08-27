@@ -50,6 +50,37 @@ class PolyTreeNode
       children: @children.map { |child| child.value }
     }.inspect
   end
+#Searchable
+  def dfs(target_value)
+    return self if self.value == target_value
+    return nil if self.children.empty?
+
+    self.children.each do |child|
+      result = child.dfs(target_value)
+      # if result.value == target_value
+      #   return child
+      # end
+      unless result.nil?
+        return result
+      end
+    end
+    return nil
+  end
+  def bfs(target_value)
+    arr = [self]
+    until arr.empty? 
+      current_node = arr[0]
+      if current_node.value == target_value
+        return current_node
+      end
+      if !current_node.children.empty?
+        arr + current_node.children
+      end
+      arr.shift
+    end
+    return nil
+
+  end
 
 end
 
