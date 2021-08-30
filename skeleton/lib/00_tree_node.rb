@@ -74,7 +74,7 @@ class PolyTreeNode
         return current_node
       end
       if !current_node.children.empty?
-        arr + current_node.children
+        arr.concat(current_node.children)
       end
       arr.shift
     end
